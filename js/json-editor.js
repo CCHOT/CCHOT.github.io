@@ -1,10 +1,10 @@
 'use strict';
 
 let editor;
-$(function () {
+window.onload = function (){
     init();
 
-});
+}
 
 
 function init() {
@@ -12,14 +12,22 @@ function init() {
 }
 
 function json_edit_init() {
-    JSONEditor.defaults.options.theme = 'bootstrap3';
     JSONEditor.defaults.options.template = 'swig';
+    JSONEditor.defaults.languages.en.button_collapse = "收起";
+    JSONEditor.defaults.languages.en.button_expand = "展开";
+    JSONEditor.defaults.languages.en.button_edit_json = "编辑schema";
+    JSONEditor.defaults.languages.en.button_object_properites = "添加";
+    JSONEditor.defaults.languages.en.button_add_properties = "添加";
+    JSONEditor.defaults.languages.en.error_minimum_incl = "最少长度为{{0}}";
+    JSONEditor.defaults.languages.en.error_pattern = "必须满足正则表达公式{{0}}";
+    JSONEditor.defaults.languages.en.error_minLength = "最少长度为{{0}}";
+    JSONEditor.defaults.languages.en.error_notempty = "不能为空";
     let schema={
         "title": "大T JSON Schema",
         "type":"object",
         "options":{
-            "disable_collapse":true,
-            "disable_edit_json":true,
+            "disable_collapse":false,
+            "disable_edit_json":false,
         },
         "format":"grid",
         "required":["properties","op_type","id","type","required","desc","rep_user","app_version"],
@@ -250,7 +258,7 @@ function json_edit_init() {
         },
     };
 
-    editor = new JSONEditor(document.getElementById('json_schema'),
+    editor = new JSONEditor(document.getElementById('json-eidtor'),
         {
             display_required_only:true,
             disable_edit_json:true,
